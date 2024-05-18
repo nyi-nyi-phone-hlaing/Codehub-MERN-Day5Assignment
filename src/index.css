@@ -78,14 +78,16 @@ section form button {
 
 section .student-container,
 section .counter,
-section form {
+section form,
+section .user-container {
   width: 100%;
   border: 1px solid #666;
   padding: 10px;
   margin-top: 10px;
 }
 
-section .student-container ul {
+section .student-container ul,
+section .user-container ul {
   list-style: none;
   background: #ddd;
   margin: 8px 0;
@@ -93,7 +95,8 @@ section .student-container ul {
   border-radius: 5px;
 }
 
-section .student-container ul li:last-child {
+section .student-container ul li:last-child,
+section .user-container ul li:last-child {
   color: #777;
 }
 

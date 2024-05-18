@@ -1,12 +1,15 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-const Form = () => {
+const Form = ({ setUsers }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const handleSubmitForm = (e) => {
     e.preventDefault();
     if (!name || !age) return alert("Please enter your name and age");
-    alert("Name: " + name + " Age: " + age);
+    setUsers((users) => [...users, { name, age }]);
+    setName("");
+    setAge("");
   };
   return (
     <form onSubmit={handleSubmitForm}>
@@ -27,6 +30,10 @@ const Form = () => {
       <button type='submit'>Submit</button>
     </form>
   );
+};
+
+Form.propTypes = {
+  setUsers: PropTypes.func.isRequired,
 };
 
 export default Form;
