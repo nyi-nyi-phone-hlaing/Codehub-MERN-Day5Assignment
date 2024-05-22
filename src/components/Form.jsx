@@ -1,46 +1,36 @@
-import { useState } from "react";
+import { useRef } from "react";
 import PropTypes from "prop-types";
 
 const Form = ({ setUsers }) => {
-  const [name, setName] = useState("");
-  const [live, setLive] = useState("");
-  const [email, setEmail] = useState("");
+  const name = useRef();
+  const live = useRef();
+  const email = useRef();
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
     if (
-      name.trim().length === 0 ||
-      live.trim().length === 0 ||
-      email.trim().length === 0
+      name.current.value.trim().length === 0 ||
+      live.current.value.trim().length === 0 ||
+      email.current.value.trim().length === 0
     )
       return alert("Please fill in all the fields");
-    setUsers((users) => [...users, { name, live, email }]);
-    setName("");
-    setLive("");
-    setEmail("");
+    setUsers((users) => [
+      ...users,
+      {
+        name: name.current.value,
+        live: live.current.value,
+        email: email.current.value,
+      },
+    ]);
+    name.current.value = "";
+    live.current.value = "";
+    email.current.value = "";
   };
   return (
     <form onSubmit={handleSubmitForm}>
-      <input
-        type='text'
-        name='name'
-        placeholder='Enter your name'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type='text'
-        name='live'
-        placeholder='Enter your live'
-        value={live}
-        onChange={(e) => setLive(e.target.value)}
-      />
-      <input
-        type='text'
-        name='email'
-        placeholder='Enter your email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <input name='name' placeholder='Enter your name' ref={name} />
+      <input name='live' placeholder='Enter your live' ref={live} />
+      <input name='email' placeholder='Enter your email' ref={email} />
       <button type='submit'>Submit</button>
     </form>
   );
