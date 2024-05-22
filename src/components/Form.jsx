@@ -3,13 +3,20 @@ import PropTypes from "prop-types";
 
 const Form = ({ setUsers }) => {
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [live, setLive] = useState("");
+  const [email, setEmail] = useState("");
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    if (!name || !age) return alert("Please enter your name and age");
-    setUsers((users) => [...users, { name, age }]);
+    if (
+      name.trim().length === 0 ||
+      live.trim().length === 0 ||
+      email.trim().length === 0
+    )
+      return alert("Please fill in all the fields");
+    setUsers((users) => [...users, { name, live, email }]);
     setName("");
-    setAge("");
+    setLive("");
+    setEmail("");
   };
   return (
     <form onSubmit={handleSubmitForm}>
@@ -21,11 +28,18 @@ const Form = ({ setUsers }) => {
         onChange={(e) => setName(e.target.value)}
       />
       <input
-        type='number'
-        name='age'
-        placeholder='Enter your age'
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
+        type='text'
+        name='live'
+        placeholder='Enter your live'
+        value={live}
+        onChange={(e) => setLive(e.target.value)}
+      />
+      <input
+        type='text'
+        name='email'
+        placeholder='Enter your email'
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <button type='submit'>Submit</button>
     </form>

@@ -1,17 +1,19 @@
 import PropTypes from "prop-types";
 
-const User = ({ name, age }) => {
+const User = ({ name, live, email }) => {
   return (
     <ul>
-      <li>{name}</li>
-      <li>{age}</li>
+      <li>Name : {name}</li>
+      <li>Live : {live}</li>
+      <li>Email : {email} </li>
     </ul>
   );
 };
 
 User.propTypes = {
   name: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
+  live: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 export default User;

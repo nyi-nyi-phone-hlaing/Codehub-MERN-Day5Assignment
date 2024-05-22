@@ -41,7 +41,14 @@ function App() {
         <UserList>
           {users.length > 0 ? (
             users.map((user, index) => {
-              return <User key={index} name={user.name} age={user.age} />;
+              return (
+                <User
+                  key={index}
+                  name={user.name}
+                  live={user.live}
+                  email={user.email}
+                />
+              );
             })
           ) : (
             <p>No user information available</p>

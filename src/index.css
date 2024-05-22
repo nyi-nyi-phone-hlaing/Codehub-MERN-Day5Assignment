@@ -96,7 +96,7 @@ section .user-container ul {
 }
 
 section .student-container ul li:last-child,
-section .user-container ul li:last-child {
+section .user-container ul li:not(:first-child) {
   color: #777;
 }
 
